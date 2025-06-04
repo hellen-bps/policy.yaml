@@ -1,0 +1,21 @@
+Policy:
+    Version: "2012-10-17"
+    Statement:
+      - Sid: TestOne
+        Effect: Allow
+        Action:
+          - 'sts:AssumeRole'
+          - 'ec2:*'
+          - 'lambda:InvokeFunction'
+        Resource:
+          - 'arn:aws:iam::431591413306:role/placeholder*'
+          - 'arn:aws:iam::*:role/placeholder*'
+      - Sid: TestTwo
+        Effect: Allow
+        Action:
+          - 'sts:AssumeRole'
+          - 'lambda:*'
+        Resource: 'arn:aws:iam::431591413306:role/placeholder*'
+        Condition:
+          StringEquals:
+            aws:PrincipalTag/job-category: 'test'
